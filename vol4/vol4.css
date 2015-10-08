@@ -1,1 +1,28 @@
 /* Code by AdWARDS */
+
+scriptloader {
+  display: none;
+}
+
+body {
+  margin: 0;
+  font-size: 16px;
+  font-family:
+    'Open Sans',
+    'Helvetica Neue',
+    Arial,
+    'Hiragino Sans GB',
+    'Microsoft YaHei',
+    'WenQuanYi Micro Hei',
+    sans-serif;
+  background-image: url("img/background.jpg");
+  background-size: 40px;
+}
+
+@media 
+(-webkit-min-device-pixel-ratio: 2), 
+(min-resolution: 192dpi) { 
+  body {
+    background-image: url("img/background@2x.jpg");
+  }
+}
