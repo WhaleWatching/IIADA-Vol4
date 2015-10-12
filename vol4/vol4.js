@@ -70,7 +70,6 @@
         assets.sprites.deepsea_set.push(tile);
         stage.addChild(tile);
       }
-      updateTimestamp();
       requestAnimationFrame(animate);
     });
 
@@ -94,19 +93,6 @@
       }
     };
 
-    // Standalone timestamp
-    var begin_timestamp = 0;
-    var current_timestamp = 0;
-    // Return the delta
-    var updateTimestamp = function (global_timestamp) {
-      if(!global_timestamp) {
-        begin_timestamp = performance.now();
-      } else {
-        var last_timestamp = current_timestamp;
-        current_timestamp = global_timestamp - begin_timestamp;
-        return current_timestamp - last_timestamp;
-      }
-    }
 
     // Update value by valueName
     var updateValue = function (valueName, easingName) {
@@ -151,11 +137,18 @@
       }
     }
 
+    // Standalone timestamp
+    var last_timestamp = 0;
+    var current_timestamp = 0;
+
     var animate = function (global_timestamp) {
-      var delta = updateTimestamp(global_timestamp);
-      if(delta > 20) {
-        delta = 20;
+      var delta = global_timestamp - last_timestamp;
+      last_timestamp = global_timestamp;
+      if (delta > 40) {
+        delta = 40;
       }
+      current_timestamp += delta;
+
       var container = new PIXI.Rectangle(0, 0, render.view.width, render.view.height);
       var center = new PIXI.Point(container.width / 2, container.height / 2);
       var matrix_column_number = Math.ceil(container.width / matrix_column_width);
