@@ -153,6 +153,9 @@
 
     var animate = function (global_timestamp) {
       var delta = updateTimestamp(global_timestamp);
+      if(delta > 20) {
+        delta = 20;
+      }
       var container = new PIXI.Rectangle(0, 0, render.view.width, render.view.height);
       var center = new PIXI.Point(container.width / 2, container.height / 2);
       var matrix_column_number = Math.ceil(container.width / matrix_column_width);
