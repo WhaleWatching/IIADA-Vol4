@@ -31,8 +31,84 @@ body {
 #stage>[scene] {
   height: 100vh;
   width: 100vw;
+  position: relative;
+}
+#stage>[scene]>[layer] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+[layer][layout-center] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+[layer][layout-center]>content {
+  display: block;
+  position: relative;
+  height: 600px;
+  width: 1280px;
 }
 
+vertial-line {
+  display: inline-block;
+  position: absolute;
+}
+vertial-line:not(.right) {
+  transform: rotate(90deg) translateY(-100%);
+  transform-origin: 0% 0%;
+}
+vertial-line.right {
+  transform: rotate(-90deg) translateX(-100%);
+  transform-origin: 0% 0%;
+}
+vertial-line-chn {
+  display: inline-block;
+  position: absolute;
+  width: 1em;
+  line-height: 1em;
+}
+
+
+/* Scene configs */
 [data-scene=cover] {
   overflow: hidden;
+  color: #999;
+}
+[data-scene=cover] vertial-line {
+  white-space:nowrap;
+}
+[data-scene=cover] vertial-line.volume {
+  top: 100px;
+  left: 630px;
+  font-size: 0.8em;
+}
+[data-scene=cover] vertial-line.iiada-description {
+  top: 250px;
+  left: 970px;
+  font-size: 0.8em;
+}
+[data-scene=cover] vertial-line.curator {
+  top: 20px;
+  left: 240px;
+  font-size: 0.7em;
+  font-style: italic;
+}
+[data-scene=cover] vertial-line.opening-date {
+  top: 370px;
+  left: 432px;
+  font-size: 0.8em;
+}
+[data-scene=cover] vertial-line-chn.iiada-chn {
+  top: 330px;
+  left: 180px;
+}
+[data-scene=cover] img.iiada {
+  position: absolute;
+  top: 280px;
+  left: 760px;
+  transform: rotate(90deg);
+  height: 36px;
 }

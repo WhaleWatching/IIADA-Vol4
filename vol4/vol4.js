@@ -9,6 +9,7 @@
   // Setup scene.js
   $.scene.setScenes(elem_scenes);
 
+  // Random fuctions
   var randomFunctions = {
     // Return Boolean
     byProbability: function (probability) {
@@ -83,7 +84,7 @@
     var destiny = {
       camera: {
         value: 1000,
-        duration: 7000
+        duration: 6000
       }
     };
     var progess = {
@@ -117,11 +118,11 @@
     stage.addChild(seafoods_graphics);
 
     // The wave
-    var wave_range = 10;
-    var wave_vector_range = 20;
+    var wave_range = 3;
+    var wave_vector_range = 800;
     var updateOrCreateWaveState = function (wave_state, delta) {
       if(wave_state) {
-        if(randomFunctions.timeRelated(3, delta)) {
+        if(randomFunctions.timeRelated(2, delta)) {
           wave_state.vector = randomFunctions.byRange(-wave_vector_range, wave_vector_range);
         }
         if(wave_state.offset > wave_range || wave_state.offset < -wave_range) {
@@ -141,6 +142,8 @@
     var last_timestamp = 0;
     var current_timestamp = 0;
 
+    var last_width = 0;
+
     var animate = function (global_timestamp) {
       var delta = global_timestamp - last_timestamp;
       last_timestamp = global_timestamp;
@@ -154,30 +157,46 @@
       var matrix_column_number = Math.ceil(container.width / matrix_column_width);
       var matrix_width = matrix_column_number * matrix_column_width;
       updateValue('camera', 'easeOutQuad');
+
+      if(last_width != container.width) {
+        console.log(container.width, center.x, center.y);
+        last_width = container.width;
+      }
       
       // Calculating the Deepsea title position
       for (var i = assets.sprites.deepsea_set.length - 1; i >= 0; i--) {
         updateOrCreateWaveState(assets.sprites.deepsea_set[i].wave_state, delta);
         assets.sprites.deepsea_set[i].position.x = center.x - assets.textures.deepsea.width / 2 + matrix_column_width * assets.sprites.deepsea_set[i].offset;
         assets.sprites.deepsea_set[i].position.y =
-          center.y - assets.textures.deepsea.height / 2 +
+          center.y - assets.textures.deepsea.height / 2 - 150 +
           progess.camera.value - 1010 + assets.sprites.deepsea_set[i].z_offset * 600 * (1.04 - progess.camera.progess) +
           assets.sprites.deepsea_set[i].wave_state.offset;
       }
 
       // Deal with seafoods
-      var current_seafoods_density = 0.0008 * progess.camera.value;
+      var current_seafoods_density = 0.001 * progess.camera.value;
+      var seafoods_per_frame = 1;
+      if(current_timestamp > 20 * 60 * 1000) {
+        current_seafoods_density = 100;
+        seafoods_per_frame = 20;
+      }
       if(randomFunctions.timeRelated(current_seafoods_density, delta)) {
-        var seafood = new PIXI.Rectangle(randomFunctions.byFlooredRange(0, matrix_column_number) * matrix_column_width - (matrix_width / 2 - center.x), container.height, matrix_column_width, randomFunctions.byRange(12, 52));
-        seafood.vector_y = -randomFunctions.byRange(0.1 * progess.camera.value, 0.5 * progess.camera.value);
-        seafood.wave_state = updateOrCreateWaveState();
-        seafood.logic_position = {x: seafood.x, y: seafood.y};
-        seafoods.push(seafood);
+        for (var i = 0; i < seafoods_per_frame; i++) {
+          var seafood = new PIXI.Rectangle(randomFunctions.byFlooredRange(0, matrix_column_number) * matrix_column_width - (matrix_width / 2 - center.x), container.height, matrix_column_width, randomFunctions.byRange(22, 88));
+          seafood.vector_y = -randomFunctions.byRange(0.1 * progess.camera.value, 0.5 * progess.camera.value);
+          seafood.wave_state = updateOrCreateWaveState();
+          seafood.logic_position = {x: seafood.x, y: seafood.y};
+          seafoods.push(seafood);
+        }
       }
 
       // Calculate and display sea foods
       seafoods_graphics.clear();
       seafoods_graphics.beginFill(0x969696);
+      // seafoods_graphics.lineStyle(4, 0xffd900, 1);
+      // seafoods_graphics.moveTo(center.x, 0);
+      // seafoods_graphics.lineTo(center.x, container.height);
+      // seafoods_graphics.drawRect(10, 10, 90, 90);
       for (var i = seafoods.length - 1; i >= 0; i--) {
         seafoods[i].logic_position.y += seafoods[i].vector_y * (delta / 1000);
         updateOrCreateWaveState(seafoods[i].wave_state, delta);
@@ -202,6 +221,7 @@
   })();
 
   $(document).ready(function () {
+    $('vertial-line').editingAdjustable();
   });
 
 })(jQuery, window, document);
