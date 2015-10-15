@@ -11,7 +11,6 @@
       '<span class="content" style="color: #000;"></span>' +
     '</div>');
   var helper_element_content = helper_element.children('.content');
-  console.log(helper_element);
 
   var applyChanges = function (target) {
     var results = '';
@@ -47,7 +46,7 @@
       y: begin_event.pageY
     }
     var changed = false;
-    $(document).on('selectstart.editing-adjustable-editing', function (event) {
+    $(document).on('selectstart.editing-adjustable-editing, dragstart.editing-adjustable-editing', function (event) {
       event.preventDefault();
       return false;
     });
@@ -57,22 +56,22 @@
       if(target.data('editing-adjustable-position')['left'] != false) {
         var value = (target.data('editing-adjustable-position')['left'] + (event.pageX - begin_mouse_position.x)).toString() + 'px';
         target.css('left', value);
-        helper_element_content[0].innerText += 'left: ' + value + ';\n'
+        helper_element_content[0].innerText += 'left: ' + value + '(' + (event.pageX - begin_mouse_position.x).toString() + ')\n'
       }
       if(target.data('editing-adjustable-position')['right'] != false) {
         var value = (target.data('editing-adjustable-position')['right'] - (event.pageX - begin_mouse_position.x)).toString() + 'px';
         target.css('right', value);
-        helper_element_content[0].innerText += 'right: ' + value + ';\n'
+        helper_element_content[0].innerText += 'right: ' + value + '(' + (event.pageX - begin_mouse_position.x).toString() + ')\n'
       }
       if(target.data('editing-adjustable-position')['top'] != false) {
         var value = (target.data('editing-adjustable-position')['top'] + (event.pageY - begin_mouse_position.y)).toString() + 'px';
         target.css('top', value);
-        helper_element_content[0].innerText += 'top: ' + value + ';\n'
+        helper_element_content[0].innerText += 'top: ' + value + '(' + (event.pageY - begin_mouse_position.y).toString() + ')\n'
       }
       if(target.data('editing-adjustable-position')['bottom'] != false) {
         var value = (target.data('editing-adjustable-position')['bottom'] - (event.pageY - begin_mouse_position.y)).toString() + 'px';
         target.css('bottom', value);
-        helper_element_content[0].innerText += 'bottom: ' + value + ';\n'
+        helper_element_content[0].innerText += 'bottom: ' + value + '(' + (event.pageY - begin_mouse_position.y).toString() + ')\n'
       }
     });
     $(document).on('mouseup.editing-adjustable-editing', function (event) {

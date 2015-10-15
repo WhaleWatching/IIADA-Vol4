@@ -27,19 +27,83 @@ body {
   }
 }
 
+#stage {
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 600px;
+}
+
 #stage,
-#stage>[scene] {
+[scene] {
   height: 100vh;
   width: 100vw;
-  position: relative;
+  overflow: hidden;
 }
-#stage>[scene]>[layer] {
+[scene]:not(.camera-on) {
+  display: none;
+}
+[scene]>[layer] {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
 }
+
+[scene] {
+  position: absolute;
+  top: 0;
+  animation-duration: 1s;
+}
+
+@keyframes segue-leave {
+  0% {
+  }
+  100% {
+    transform: rotateY( -30deg ) translateX(120%);
+  }
+}
+@keyframes segue-hide {
+  0% {
+  }
+  100% {
+    transform: rotateY( 30deg ) translateX(-120%);
+  }
+}
+
+@keyframes segue-enter {
+  0% {
+    transform: rotateY( -30deg ) translateX(120%);
+  }
+  100% {
+  }
+}
+@keyframes segue-back {
+  0% {
+    transform: rotateY( 30deg ) translateX(-120%);
+  }
+  100% {
+  }
+}
+
+[scene].segue-leave {
+  animation: segue-leave;
+  animation-duration: 1s;
+}
+[scene].segue-hide {
+  animation: segue-hide;
+  animation-duration: 1s;
+}
+
+[scene].segue-enter {
+  animation: segue-enter;
+  animation-duration: 1s;
+}
+[scene].segue-back {
+  animation: segue-back;
+  animation-duration: 1s;
+}
+
 [layer][layout-center] {
   display: flex;
   align-items: center;
@@ -86,29 +150,57 @@ vertial-line-chn {
   font-size: 0.8em;
 }
 [data-scene=cover] vertial-line.iiada-description {
-  top: 250px;
-  left: 970px;
+  position: fixed;
+  top: 20px;
+  right: -197px;
   font-size: 0.8em;
 }
 [data-scene=cover] vertial-line.curator {
-  top: 20px;
-  left: 240px;
+  position: fixed;
+  top: 18px;
+  left: 40px;
   font-size: 0.7em;
   font-style: italic;
 }
 [data-scene=cover] vertial-line.opening-date {
-  top: 370px;
-  left: 432px;
+  position: fixed;
+  top: 18px;
+  left: 20px;
   font-size: 0.8em;
 }
 [data-scene=cover] vertial-line-chn.iiada-chn {
-  top: 330px;
-  left: 180px;
+  position: fixed;
+  bottom: 20px;
+  left: 24px;
 }
 [data-scene=cover] img.iiada {
-  position: absolute;
-  top: 280px;
-  left: 760px;
+  position: fixed;
+  top: 275px;
+  right: -256px;
   transform: rotate(90deg);
   height: 36px;
+}
+
+[data-scene=intro] [layer][layout-center]>content {
+  display: flex;
+}
+
+[data-scene=intro] .post {
+  flex: 1;
+  padding: 0 80px;
+  color: #646464;
+}
+[data-scene=intro] .post header {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 15px 0 35px;
+  font-family: arial, "Microsoft YaHei UI";
+}
+[data-scene=intro] .post p {
+  font-size: 12px;
+  text-align: justify;
+}
+[data-scene=intro] .post.english p {
+  line-height: 1.2;
 }

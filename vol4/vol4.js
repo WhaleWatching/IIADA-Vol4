@@ -145,6 +145,10 @@
     var last_width = 0;
 
     var animate = function (global_timestamp) {
+      if(!$(render.view).is(':visible')) {
+        requestAnimationFrame(animate);
+        return;
+      }
       var delta = global_timestamp - last_timestamp;
       last_timestamp = global_timestamp;
       if (delta > 40) {
@@ -221,7 +225,16 @@
   })();
 
   $(document).ready(function () {
-    $('vertial-line').editingAdjustable();
+    $('vertial-line, vertial-line-chn, img.iiada').editingAdjustable();
+    $(window).on('wheel.scene-director', function (event) {
+      // event.preventDefault();
+      // if(event.originalEvent.deltaY > 0) {
+      //   $.scene.next();
+      // }
+      // if(event.originalEvent.deltaY < 0) {
+      //   $.scene.prev();
+      // }
+    })
   });
 
 })(jQuery, window, document);
