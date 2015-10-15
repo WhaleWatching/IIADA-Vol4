@@ -8,7 +8,7 @@
 </head>
 <body>
   <article id="stage">
-    <section scene data-scene="cover">
+    <section scene data-scene="cover" class="camera-on">
       <div layer layout-center>
         <content>
           <vertial-line class="volume">- Volume 4 -</vertial-line>
@@ -52,24 +52,41 @@
         </content>
       </div>
     </section>
-    <section scene data-scene="notice" class="camera-on">
+    <section scene data-scene="notice">
       <div layer layout-center>
         <content>
-          notice
+          <div class="sign">
+            <img class="icon" src="vol4/img/pray.png">
+            <div class="text">Be Solemn</div>
+            <div class="text">保持肃穆</div>
+          </div>
+          <div class="sign">
+            <img class="icon mouse" src="vol4/img/mouse.png">
+            <div class="text">Keep the mouse horizontal</div>
+            <div class="text">while scrolling</div>
+            <div class="text">横置鼠标滑动翻页</div>
+          </div>
+          <div class="sign">
+            <img class="icon" src="vol4/img/share.png">
+            <div class="text">Share the blessing</div>
+            <div class="text">分享祝福</div>
+          </div>
         </content>
       </div>
     </section>
     <section scene data-scene="slogon">
       <div layer layout-center>
         <content>
-          slogon
+          <img class="slogon" src="vol4/img/mesmerize.png">
         </content>
       </div>
     </section>
     <section scene data-scene="gallery1">
       <div layer layout-center>
         <content>
-          gallery1
+          <exhibit-frame>
+            <img src="vol4/img/1-buddha.png">
+          </exhibit-frame>
         </content>
       </div>
     </section>
@@ -104,7 +121,9 @@
     <section scene data-scene="farewell">
       <div layer layout-center>
         <content>
-          farewell
+          <exhibit-frame>
+            <img src="vol4/img/final.png">
+          </exhibit-frame>
         </content>
       </div>
     </section>

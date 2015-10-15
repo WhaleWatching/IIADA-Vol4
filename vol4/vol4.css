@@ -114,6 +114,12 @@ body {
   position: relative;
   height: 600px;
   width: 1280px;
+
+  box-shadow: 0 0 0 1px rgba(0,0,0,.2);
+  background-image: linear-gradient(rgba(0,0,0,.2), rgba(0,0,0,.2));
+  background-size: 1px 1px;
+  background-repeat: repeat-y;
+  background-position: center;
 }
 
 vertial-line {
@@ -203,4 +209,95 @@ vertial-line-chn {
 }
 [data-scene=intro] .post.english p {
   line-height: 1.2;
+}
+
+[data-scene=notice] [layer][layout-center]>content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+[data-scene=notice] .sign {
+  display: inline-block;
+  height: 400px;
+  padding: 0 120px;
+  text-align: center;
+}
+[data-scene=notice] .sign .icon {
+  height: 130px;
+  padding: 30px 0;
+}
+[data-scene=notice] .sign .text {
+  padding: 5px 0;
+  color: #999;
+}
+
+@keyframes mouse {
+  0% {
+    transform: rotate(70deg);
+  }
+  20% {
+    transform: rotate(70deg);
+  }
+  50% {
+    transform: rotate(0);
+  }
+  70% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(70deg);
+  }
+}
+
+[data-scene=notice] .sign .icon.mouse {
+  animation: mouse 8s infinite;
+}
+
+
+[data-scene=slogon] [layer][layout-center]>content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+[data-scene=slogon] .slogon {
+  width: 427px;
+}
+
+exhibit-frame {
+  display: block;
+  position: absolute;
+  border: solid 3px #707070;
+  background-color: #fff;
+  box-shadow: 0 5px 10px -1px rgba(0,0,0,0.4);
+  padding: 45px 38px;
+}
+
+exhibit-info {
+  display: block;
+  position: absolute;
+}
+exhibit-info header {
+  font-weight: bold;
+  font-size: 1.4em;
+}
+exhiibit-info p {
+  font-size: 0.7em;
+}
+exhibit-info table {
+  border: none;
+}
+exhibit-info table td.name {
+  font-weight: bold;
+}
+
+
+
+[data-scene=farewell] [layer][layout-center]>content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+[data-scene=farewell] exhibit-frame {
+  position: static;
 }

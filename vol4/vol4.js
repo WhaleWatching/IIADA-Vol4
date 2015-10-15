@@ -227,13 +227,13 @@
   $(document).ready(function () {
     $('vertial-line, vertial-line-chn, img.iiada').editingAdjustable();
     $(window).on('wheel.scene-director', function (event) {
-      // event.preventDefault();
-      // if(event.originalEvent.deltaY > 0) {
-      //   $.scene.next();
-      // }
-      // if(event.originalEvent.deltaY < 0) {
-      //   $.scene.prev();
-      // }
+      event.preventDefault();
+      if(event.originalEvent.deltaY > 0) {
+        $.scene.next();
+      }
+      if(event.originalEvent.deltaY < 0) {
+        $.scene.prev();
+      }
     })
   });
 
