@@ -226,13 +226,27 @@
 
   $(document).ready(function () {
     $('vertial-line, vertial-line-chn, img.iiada').editingAdjustable();
-    $(window).on('wheel.scene-director', function (event) {
-      event.preventDefault();
-      if(event.originalEvent.deltaY > 0) {
-        $.scene.next();
-      }
-      if(event.originalEvent.deltaY < 0) {
-        $.scene.prev();
+    $(window).on('wheel.scene-director, keydown.scene-director', function (event) {
+      if (event.type == "wheel") {
+        event.preventDefault();
+        if(event.originalEvent.deltaY > 0) {
+          $.scene.next();
+        }
+        if(event.originalEvent.deltaY < 0) {
+          $.scene.prev();
+        }
+      } else if(event.type == "keydown" && event.keyCode >= 37 && event.keyCode <= 40) {
+        event.preventDefault();
+        switch(event.keyCode) {
+          case 37:
+          case 38:
+            $.scene.prev();
+            break;
+          case 39:
+          case 40:
+            $.scene.next();
+            break;
+        }
       }
     })
   });

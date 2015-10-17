@@ -112,7 +112,7 @@ body {
 [layer][layout-center]>content {
   display: block;
   position: relative;
-  height: 600px;
+  height: 700px;
   width: 1280px;
 
   box-shadow: 0 0 0 1px rgba(0,0,0,.2);
@@ -270,6 +270,17 @@ exhibit-frame {
   background-color: #fff;
   box-shadow: 0 5px 10px -1px rgba(0,0,0,0.4);
   padding: 45px 38px;
+}
+exhibit-frame:before {
+  display: block;
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50%;
+  width: 100%;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 exhibit-info {
