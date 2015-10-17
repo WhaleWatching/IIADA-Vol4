@@ -225,7 +225,7 @@
   })();
 
   $(document).ready(function () {
-    $('vertial-line, vertial-line-chn, img.iiada').editingAdjustable();
+    $('vertial-line, vertial-line-chn, img.iiada, exhibit-frame, exhibit-info').editingAdjustable();
     $(window).on('wheel.scene-director, keydown.scene-director', function (event) {
       if (event.type == "wheel") {
         event.preventDefault();

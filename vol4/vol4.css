@@ -269,7 +269,7 @@ exhibit-frame {
   border: solid 3px #707070;
   background-color: #fff;
   box-shadow: 0 5px 10px -1px rgba(0,0,0,0.4);
-  padding: 45px 38px;
+  padding: 30px 25px;
 }
 exhibit-frame:before {
   display: block;
@@ -286,19 +286,31 @@ exhibit-frame:before {
 exhibit-info {
   display: block;
   position: absolute;
+  color: #646464;
 }
 exhibit-info header {
   font-weight: bold;
-  font-size: 1.4em;
+  font-size: 0.9em;
 }
-exhiibit-info p {
+exhibit-info p {
   font-size: 0.7em;
+  line-height: 1.1;
+  text-align: justify;
+  margin: 10px 0;
 }
 exhibit-info table {
   border: none;
+  font-size: 0.8em;
+}
+exhibit-info table tr {
+  line-height: 1.1;
 }
 exhibit-info table td.name {
   font-weight: bold;
+  width: 70px;
+}
+exhibit-info table td.detail {
+  color: #969696;
 }
 
 
@@ -311,4 +323,58 @@ exhibit-info table td.name {
 }
 [data-scene=farewell] exhibit-frame {
   position: static;
+}
+
+
+[data-scene=gallery1] .buddha {
+  top: 0;
+  left: 230px;
+}
+[data-scene=gallery1] .buddha-info {
+  width: 361px;
+  bottom: -4px;
+  left: 230px;
+}
+[data-scene=gallery1] .up {
+  top: 0;
+  left: 640px;
+}
+[data-scene=gallery1] .up-info {
+  top: 243px;
+  left: 1022px;
+}
+[data-scene=gallery1] .down {
+  top: 364px;
+  left: 640px;
+}
+[data-scene=gallery1] .down-info {
+  top: 608px;
+  left: 1022px;
+}
+
+
+[data-scene=gallery2] .buddha {
+  left: 50px;
+  bottom: 190px;
+}
+[data-scene=gallery2] .buddha-info {
+  width: 361px;
+  top: 553px;
+  left: 50px;
+}
+[data-scene=gallery2] .middle {
+  left: 490px;
+  bottom: 190px;
+}
+[data-scene=gallery2] .middle-info {
+  top: 534px;
+  left: 505px;
+}
+[data-scene=gallery2] .right {
+  left: 895px;
+  bottom: 190px;
+}
+[data-scene=gallery2] .right-info {
+  top: 534px;
+  left: 910px;
 }
