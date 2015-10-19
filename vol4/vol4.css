@@ -294,7 +294,7 @@ exhibit-info header {
 }
 exhibit-info p {
   font-size: 0.7em;
-  line-height: 1.1;
+  line-height: 1.2;
   text-align: justify;
   margin: 10px 0;
 }
@@ -377,4 +377,31 @@ exhibit-info table td.detail {
 [data-scene=gallery2] .right-info {
   top: 534px;
   left: 910px;
+}
+
+
+[data-scene=gallery3] .fish {
+  left: 714px;
+  top: 30px;
+}
+[data-scene=gallery3] .fish-info {
+  width: 521px;
+  bottom: 20px;
+  left: 714px;
+}
+[data-scene=gallery3] .up {
+  left: 25px;
+  top: 30px;
+}
+[data-scene=gallery3] .up-info {
+  top: 363px;
+  left: 40px;
+}
+[data-scene=gallery3] .down {
+  left: 243px;
+  top: 372px;
+}
+[data-scene=gallery3] .down-info {
+  top: 600px;
+  left: 65px;
 }
