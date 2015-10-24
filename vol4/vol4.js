@@ -48,6 +48,7 @@
     elem_scenes.filter('[data-scene=cover]').append(render.view);
 
     loader.add('deepsea', '/vol4/img/deepsea.png');
+    loader.add('deepsea_entities', '/vol4/img/deepsea-entities.json');
 
     var assets = {};
 
@@ -59,6 +60,7 @@
       assets.sprites.deepsea_set = [];
 
       assets.textures.deepsea = resources.deepsea.texture;
+      assets.deepsea_entities = resources.deepsea_entities.textures;
 
       for (var i = 0; i < resources.deepsea.texture.width / matrix_column_width; i++) {
         var tile = new PIXI.Sprite(
@@ -163,7 +165,6 @@
       updateValue('camera', 'easeOutQuad');
 
       if(last_width != container.width) {
-        console.log(container.width, center.x, center.y);
         last_width = container.width;
       }
       
@@ -190,6 +191,12 @@
           seafood.vector_y = -randomFunctions.byRange(0.1 * progess.camera.value, 0.5 * progess.camera.value);
           seafood.wave_state = updateOrCreateWaveState();
           seafood.logic_position = {x: seafood.x, y: seafood.y};
+          seafood.sprite = new PIXI.Sprite(assets.deepsea_entities[randomFunctions.byFlooredRange(1, 20).toString() + '.png']);
+          stage.addChild(seafood.sprite);
+          seafood.sprite.height = seafood.height = seafood.sprite.height * (seafood.width / seafood.sprite.width);
+          seafood.sprite.width = seafood.width;
+          seafood.sprite.x = seafood.x;
+          seafood.sprite.y = seafood.y;
           seafoods.push(seafood);
         }
       }
@@ -205,7 +212,10 @@
         seafoods[i].logic_position.y += seafoods[i].vector_y * (delta / 1000);
         updateOrCreateWaveState(seafoods[i].wave_state, delta);
         seafoods[i].y = seafoods[i].logic_position.y + seafoods[i].wave_state.offset * 2;
-        seafoods_graphics.drawRect(seafoods[i].x, seafoods[i].y, seafoods[i].width, seafoods[i].height);
+        // seafoods_graphics.drawRect(seafoods[i].x, seafoods[i].y, seafoods[i].width, seafoods[i].height);
+
+        seafoods[i].sprite.x = seafoods[i].x;
+        seafoods[i].sprite.y = seafoods[i].y;
       }
       seafoods_graphics.endFill();
 
@@ -214,6 +224,7 @@
         if(seafood.height + seafood.y > 0) {
           return true;
         } else {
+          stage.removeChild(seafood.sprite);
           return false;
         }
       });
@@ -225,7 +236,10 @@
   })();
 
   $(document).ready(function () {
-    $('vertial-line, vertial-line-chn, img.iiada, exhibit-frame, exhibit-info').editingAdjustable();
+    if($.fn.editingAdjustable)
+      $('vertial-line, vertial-line-chn, img.iiada, exhibit-frame, exhibit-info').editingAdjustable();
+
+    // The scroll and arrow keys handling
     $(window).on('wheel.scene-director, keydown.scene-director', function (event) {
       if (event.type == "wheel") {
         event.preventDefault();
@@ -248,7 +262,35 @@
             break;
         }
       }
-    })
+    });
+
+    // Like and share
+    delegate('click.like-and-share', '.like-and-share .icon', function () {
+      var self = $(this);
+      if (self.hasClass('like')) {
+        self.toggleClass('active');
+      }
+    });
+    delegate('mouseenter.like-and-share', '.like-and-share .share-set', function () {
+      var self = $(this);
+      if(self.find('.icon.douban').length < 1) {
+        var url = window.location.href.split('?')[0];
+        var image = self.find('.icon.share').data('share-image');
+        if(!image) {
+          image = '';
+        }
+        var share_box = $(
+            '<a target="_blank" href="http://www.douban.com/share/service?image=' + image + '&href=' + url + '" class="icon douban"></a>' +
+            '<a target="_blank" href="https://www.facebook.com/dialog/feed?app_id=514810405354859&display=page&link=' + url + '&redirect_uri=http://iiada.serotoninphobia.info&picture=' + image + '" class="icon facebook"></a>' +
+            '<a target="_blank" href="https://twitter.com/intent/tweet?text=' + url + '" class="icon twitter"></a>' +
+            '<a target="_blank" href="http://service.weibo.com/share/share.php?url=' + url + '" class="icon weibo"></a>'
+            );
+        self.append(
+            share_box
+          );
+      }
+    });
+
   });
 
 })(jQuery, window, document);

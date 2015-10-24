@@ -15,15 +15,15 @@ body {
     'Microsoft YaHei',
     'WenQuanYi Micro Hei',
     sans-serif;
-  background-image: url("img/background.jpg");
-  background-size: 40px;
+  background-image: url("img/background.png");
+  background-size: 300px;
 }
 
 @media 
 (-webkit-min-device-pixel-ratio: 2), 
 (min-resolution: 192dpi) { 
   body {
-    background-image: url("img/background@2x.jpg");
+    background-image: url("img/background@2x.png");
   }
 }
 
@@ -359,7 +359,7 @@ exhibit-info table td.detail {
 }
 [data-scene=gallery2] .buddha-info {
   width: 361px;
-  top: 553px;
+  top: 520px;
   left: 50px;
 }
 [data-scene=gallery2] .middle {
@@ -404,4 +404,186 @@ exhibit-info table td.detail {
 [data-scene=gallery3] .down-info {
   top: 600px;
   left: 65px;
+}
+
+
+[data-scene=gallery4] .up {
+  left: 124px;
+  top: 40px;
+  padding: 20px 30px;
+}
+[data-scene=gallery4] .up-info {
+  top: 293px;
+  left: 150px;
+}
+[data-scene=gallery4] .down {
+  left: 124px;
+  top: 370px;
+  padding: 20px 30px;
+}
+[data-scene=gallery4] .down-info {
+  left: 150px;
+  top: 620px;
+  width: 400px;
+}
+[data-scene=gallery4] .right {
+  left: 760px;
+  top: 40px;
+}
+[data-scene=gallery4] .right img {
+  height: 400px;
+  width: 300px;
+}
+[data-scene=gallery4] .right-info {
+  left: 760px;
+  bottom: 0px;
+  width: 360px;
+}
+
+
+[data-scene=gallery5] .left {
+  left: 150px;
+  top: 50px;
+}
+[data-scene=gallery5] .left-info {
+  left: 150px;
+  top: 530px;
+  width: 382px;
+}
+[data-scene=gallery5] .small {
+  padding: 20px;
+}
+[data-scene=gallery5] .twitter {
+  left: 720px;
+  top: 50px;
+}
+[data-scene=gallery5] .weibo {
+  left: 945px;
+  top: 50px;
+}
+[data-scene=gallery5] .facebook {
+  left: 720px;
+  top: 275px;
+}
+[data-scene=gallery5] .wechat {
+  left: 945px;
+  top: 275px;
+}
+[data-scene=gallery5] .right-info {
+  left: 720px;
+  top: 500px;
+  width: 408px;
+}
+
+/* like and share buttons */
+.like-and-share {
+  padding: 10px 0;
+  vertical-align: bottom;
+}
+.like-and-share .icon {
+  background: none;
+  border: none;
+  height: 24px;
+  width: 24px;
+  background-size: 24px;
+  opacity: 0.7;
+  cursor: pointer;
+  display: inline-block;
+}
+.like-and-share .icon:hover {
+  opacity: 1;
+}
+.like-and-share .icon:focus {
+  outline: none;
+}
+.like-and-share .icon.like {
+  background-image: url("img/icon-like.png");
+}
+.like-and-share .icon.like.active {
+  background-image: url("img/icon-like-active.png");
+}
+.like-and-share .icon.share {
+  background-image: url("img/icon-share.png");
+}
+.like-and-share .icon.douban {
+  background-image: url("img/icon-share-douban.png");
+}
+.like-and-share .icon.weibo {
+  background-image: url("img/icon-share-weibo.png");
+}
+.like-and-share .icon.twitter {
+  background-image: url("img/icon-share-twitter.png");
+}
+.like-and-share .icon.facebook {
+  background-image: url("img/icon-share-facebook.png");
+}
+.like-and-share .share-set {
+  display: inline-block;
+}
+.like-and-share .share-set .icon:not(.share) {
+  display: none;
+}
+.like-and-share .share-set:hover .icon {
+  display: inline-block;
+}
+.like-and-share .share-set .icon {
+  margin-right: 4px;
+}
+
+/* Warning on small resolution screens */
+@media (max-width: 1279px), (max-height: 699px) {
+  #stage {
+    display: none;
+  }
+  div#warning {
+    display: flex;
+  }
+}
+
+#warning {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  color: #969696;
+  font-size: 14px;
+}
+#warning content {
+  display: block;
+  padding: 80px;
+  max-width: 600px;
+}
+#warning icon.resolution {
+  display: inline-block;
+  height: 64px;
+  width: 64px;
+  background-size: 64px;
+  background-image: url("img/icon-resolution.png");
+}
+#warning h2 {
+  margin-bottom: 0;
+}
+#warning h4 {
+  margin-top: 0;
+}
+#warning p {
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+#warning ul {
+  margin-top: 0;
+  padding: 0;
+  list-style: none;
+  line-height: 2;
+}
+#warning shortkey {
+  display: inline-block;
+  background-color: #bbb;
+  color: #fff;
+  padding: 4px 6px;
+  margin: 0 4px;
+  border-radius: 2px;
+  line-height: 1;
+  font-family: monospace;
 }
